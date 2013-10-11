@@ -27,3 +27,39 @@ def augment_visit(linter, checker_method, augmentation):
         augmentation(chain, node)
 
     setattr(checker, checker_method.__name__, augment_func)
+
+
+class Suppress(object):
+
+    def __init__(self, linter):
+        self._linter = linter
+        self._suppress = []
+        self._messages_to_append = []
+
+    def __enter__(self):
+        self._orig_add_message = self._linter.add_message
+        self._linter.add_message = self.add_message
+        return self
+
+    def add_message(self, *args):
+        self._messages_to_append.append(args)
+
+    def suppress(self, msg_id):
+        self._suppress.append(msg_id)
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self._linter.add_message = self._orig_add_message
+        for to_append in self._messages_to_append:
+            if to_append[0] in self._suppress:
+                continue
+            self._linter.add_message(*to_append)
+
+
+def supress_message(linter, checker_method, message_id, test_func):
+    def do_suppress(chain, node):
+        with Suppress(linter) as s:
+            if test_func(node):
+                s.suppress(message_id)
+            chain()
+    augment_visit(linter, checker_method, do_suppress)
+
