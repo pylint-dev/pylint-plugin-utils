@@ -17,6 +17,15 @@ def get_checker(linter, checker_class):
 
 
 def augment_visit(linter, checker_method, augmentation):
+    """
+    Augmenting a visit enables additional errors to be raised (although that case is
+    better served using a new checker) or to suppress all warnings in certain circumstances.
+
+    Augmenting functions should accept a 'chain' function, which runs the checker method
+    and possibly any other augmentations, and secondly an Astroid node. "chain()" can be
+    called at any point to trigger the continuation of other checks, or not at all to
+    prevent any further checking.
+    """
     checker = get_checker(linter, checker_method.im_class)
 
     old_method = getattr(checker, checker_method.__name__)
@@ -56,6 +65,11 @@ class Suppress(object):
 
 
 def supress_message(linter, checker_method, message_id, test_func):
+    """
+    This wrapper allows the suppression of a message if the supplied test function
+    returns True. It is useful to prevent one particular message from being raised
+    in one particular case, while leaving the rest of the messages intact.
+    """
     def do_suppress(chain, node):
         with Suppress(linter) as s:
             if test_func(node):
