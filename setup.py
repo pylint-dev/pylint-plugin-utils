@@ -17,6 +17,7 @@ setup(
     author_email='code@landscape.io',
     description=_short_description,
     version=_version,
+    install_requires=['pylint', 'astroid'],
     packages=_packages,
     license='GPLv2',
     keywords=('pylint', 'plugin', 'helpers')

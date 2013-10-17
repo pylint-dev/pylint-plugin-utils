@@ -76,4 +76,3 @@ def supress_message(linter, checker_method, message_id, test_func):
                 s.suppress(message_id)
             chain()
     augment_visit(linter, checker_method, do_suppress)
-
