@@ -5,4 +5,5 @@ python:
 install:
   - "pip install --use-mirrors -r test_requirements.txt"
   - "pip install --use-mirrors --editable ."
-script: python test/test_func.py
+  - "pip install coverage"
+
