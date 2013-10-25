@@ -20,5 +20,5 @@ setup(
     install_requires=['pylint', 'astroid'],
     packages=_packages,
     license='GPLv2',
-    keywords=('pylint', 'plugin', 'helpers')
+    keywords='pylint plugin helpers'
 )
