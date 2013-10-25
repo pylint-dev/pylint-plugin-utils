@@ -1,10 +1,9 @@
 # -*- coding: UTF-8 -*-
 from distutils.core import setup
 from setuptools import find_packages
-import time
 
 
-_version = "0.1.dev%s" % int(time.time())
+_version = "0.1"
 _packages = find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"])
 
 _short_description = "Utilities and helpers for writing Pylint plugins"
@@ -20,5 +19,5 @@ setup(
     install_requires=['pylint', 'astroid'],
     packages=_packages,
     license='GPLv2',
-    keywords=('pylint', 'plugin', 'helpers')
+    keywords='pylint plugin helpers'
 )
