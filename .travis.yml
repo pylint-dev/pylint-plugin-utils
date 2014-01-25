@@ -6,4 +6,5 @@ python:
 install:
   - "pip install --use-mirrors --editable ."
   - "pip install coverage"
-
+script:
+  true
