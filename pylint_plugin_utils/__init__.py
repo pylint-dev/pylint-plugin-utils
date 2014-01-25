@@ -1,3 +1,12 @@
+import sys
+
+def get_class(module_name, kls):
+    parts = kls.split('.')
+    m = __import__(module_name)
+    for mp in module_name.split('.')[1:]:
+        m = getattr(m, mp)
+    klass = getattr(m, parts[0])
+    return klass
 
 
 class NoSuchChecker(Exception):
@@ -26,7 +35,14 @@ def augment_visit(linter, checker_method, augmentation):
     called at any point to trigger the continuation of other checks, or not at all to
     prevent any further checking.
     """
-    checker = get_checker(linter, checker_method.im_class)
+
+    if sys.version_info[0] <= 2:
+        checker = get_checker(linter, checker_method.im_class)
+    else:
+        try:
+            checker = get_checker(linter, checker_method.__self__.__class__)
+        except AttributeError:
+            checker = get_checker(linter, get_class(checker_method.__module__, checker_method.__qualname__))
 
     old_method = getattr(checker, checker_method.__name__)
 
