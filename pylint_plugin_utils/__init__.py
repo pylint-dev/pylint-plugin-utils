@@ -81,6 +81,9 @@ class Suppress(object):
 
 
 def supress_message(linter, checker_method, message_id, test_func):
+    import warnings
+    warnings.warn("'supress_message' has been deprecated in favour of the correctly-spelled 'suppress_message'",
+                  DeprecationWarning)
     return suppress_message(linter, checker_method, message_id, test_func)
 
 
