@@ -2,11 +2,22 @@
 from distutils.core import setup
 from setuptools import find_packages
 
-_version = "0.1.1"
+_version = "0.2"
 _packages = find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"])
 
 _short_description = "Utilities and helpers for writing Pylint plugins"
 
+_classifiers = (
+    'Development Status :: 4 - Beta',
+    'Environment :: Console',
+    'Intended Audience :: Developers',
+    'Operating System :: Unix',
+    'Topic :: Software Development :: Quality Assurance',
+    'Programming Language :: Python :: 2.6',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3.3',
+    'Programming Language :: Python :: 3.4',
+)
 
 setup(
     name='pylint-plugin-utils',
@@ -18,5 +29,6 @@ setup(
     install_requires=['pylint', 'astroid'],
     packages=_packages,
     license='GPLv2',
+    classifiers=_classifiers,
     keywords='pylint plugin helpers'
 )
