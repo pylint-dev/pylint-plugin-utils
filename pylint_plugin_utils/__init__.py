@@ -81,6 +81,10 @@ class Suppress(object):
 
 
 def supress_message(linter, checker_method, message_id, test_func):
+    return suppress_message(linter, checker_method, message_id, test_func)
+
+
+def suppress_message(linter, checker_method, message_id, test_func):
     """
     This wrapper allows the suppression of a message if the supplied test function
     returns True. It is useful to prevent one particular message from being raised
