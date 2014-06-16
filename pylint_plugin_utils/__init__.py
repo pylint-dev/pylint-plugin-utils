@@ -1,4 +1,6 @@
 import sys
+from pylint.utils import UnknownMessage
+
 
 def get_class(module_name, kls):
     parts = kls.split('.')
@@ -69,8 +71,9 @@ class Suppress(object):
     def add_message(self, *args):
         self._messages_to_append.append(args)
 
-    def suppress(self, msg_id):
-        self._suppress.append(msg_id)
+    def suppress(self, *symbols):
+        for symbol in symbols:
+            self._suppress.append(symbol)
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self._linter.add_message = self._orig_add_message
@@ -87,15 +90,25 @@ def supress_message(linter, checker_method, message_id, test_func):
     return suppress_message(linter, checker_method, message_id, test_func)
 
 
-def suppress_message(linter, checker_method, message_id, test_func):
+def suppress_message(linter, checker_method, message_id_or_symbol, test_func):
     """
     This wrapper allows the suppression of a message if the supplied test function
     returns True. It is useful to prevent one particular message from being raised
     in one particular case, while leaving the rest of the messages intact.
     """
+    # At some point, pylint started preferring message symbols to message IDs. However this is not done
+    # consistently or uniformly. We try to work around this here by suppressing both the ID and the symbol,
+    # if we can find it.
+    try:
+        pylint_message = linter.check_message_id(message_id_or_symbol)
+        symbols = [s for s in (pylint_message.msgid, pylint_message.symbol) if s is not None]
+    except UnknownMessage:
+        # This can happen due to mismatches of pylint versions and plugin expectations of available messages
+        symbols = [message_id_or_symbol]
+
     def do_suppress(chain, node):
         with Suppress(linter) as s:
             if test_func(node):
-                s.suppress(message_id)
+                s.suppress(*symbols)
             chain()
     augment_visit(linter, checker_method, do_suppress)
