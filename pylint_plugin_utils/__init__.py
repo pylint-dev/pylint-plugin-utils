@@ -97,10 +97,17 @@ def suppress_message(linter, checker_method, message_id_or_symbol, test_func):
     in one particular case, while leaving the rest of the messages intact.
     """
     # At some point, pylint started preferring message symbols to message IDs. However this is not done
-    # consistently or uniformly. We try to work around this here by suppressing both the ID and the symbol,
-    # if we can find it.
+    # consistently or uniformly - occasionally there are some message IDs with no matching symbols.
+    # We try to work around this here by suppressing both the ID and the symbol, if we can find it.
+    # This also gives us compatability with a broader range of pylint versions.
+
+    # Similarly, a commit between version 1.2 and 1.3 changed where the messages are stored - see:
+    # https://bitbucket.org/logilab/pylint/commits/0b67f42799bed08aebb47babdc9fb0e761efc4ff#chg-reporters/__init__.py
+    # Therefore here, we try the new attribute name, and fall back to the old version for
+    # compatability with <=1.2 and >=1.3
+    msgs_store = getattr(linter, 'msgs_store', linter)
     try:
-        pylint_message = linter.check_message_id(message_id_or_symbol)
+        pylint_message = msgs_store.check_message_id(message_id_or_symbol)
         symbols = [s for s in (pylint_message.msgid, pylint_message.symbol) if s is not None]
     except UnknownMessage:
         # This can happen due to mismatches of pylint versions and plugin expectations of available messages
