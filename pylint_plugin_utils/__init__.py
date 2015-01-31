@@ -68,8 +68,8 @@ class Suppress(object):
         self._linter.add_message = self.add_message
         return self
 
-    def add_message(self, *args):
-        self._messages_to_append.append(args)
+    def add_message(self, *args, **kwargs):
+        self._messages_to_append.append((args, kwargs))
 
     def suppress(self, *symbols):
         for symbol in symbols:
@@ -77,10 +77,17 @@ class Suppress(object):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self._linter.add_message = self._orig_add_message
-        for to_append in self._messages_to_append:
-            if to_append[0] in self._suppress:
+        for to_append_args, to_append_kwargs in self._messages_to_append:
+            # Depending on the Pylint version, the add_message API is different.
+            # Either a single object called 'message' is passed, or the first argument
+            # is a message symbol.
+            if hasattr('symbol', to_append_args[0]):
+                code = to_append_args[0].symbol
+            else:
+                code = to_append_args[0]
+            if to_append_args[0] in self._suppress:
                 continue
-            self._linter.add_message(*to_append)
+            self._linter.add_message(*to_append_args, **to_append_kwargs)
 
 
 def supress_message(linter, checker_method, message_id, test_func):
