@@ -2,7 +2,7 @@
 from distutils.core import setup
 from setuptools import find_packages
 
-_version = "0.2.3"
+_version = "0.2.4"
 _packages = find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"])
 
 _short_description = "Utilities and helpers for writing Pylint plugins"
@@ -17,6 +17,7 @@ _classifiers = (
     'Programming Language :: Python :: 2.7',
     'Programming Language :: Python :: 3.3',
     'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
 )
 
 setup(
