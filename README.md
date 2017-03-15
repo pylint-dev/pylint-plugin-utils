@@ -2,9 +2,9 @@
 
 ## Status
 
-[![Build Status](https://travis-ci.org/landscapeio/pylint-plugin-utils.png?branch=master)](https://travis-ci.org/landscapeio/pylint-plugin-utils) 
-[![Code Quality](https://landscape.io/github/landscapeio/pylint-plugin-utils/master/landscape.png)](https://landscape.io/github/landscapeio/pylint-plugin-utils)
-[![Coverage Status](https://coveralls.io/repos/landscapeio/pylint-plugin-utils/badge.png)](https://coveralls.io/r/landscapeio/pylint-plugin-utils)
+[![Build Status](https://travis-ci.org/landscapeio/pylint-plugin-utils.svg?branch=master)](https://travis-ci.org/landscapeio/pylint-plugin-utils)
+[![Code Health](https://landscape.io/github/landscapeio/pylint-plugin-utils/master/landscape.svg?style=flat-square)](https://landscape.io/github/landscapeio/pylint-plugin-utils/master)
+[![Coverage Status](https://coveralls.io/repos/github/landscapeio/pylint-plugin-utils/badge.svg?branch=master)](https://coveralls.io/github/landscapeio/pylint-plugin-utils?branch=master)
 
 # About
 
