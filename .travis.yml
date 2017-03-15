@@ -11,5 +11,3 @@ install:
   - "pip install --editable ."
 script:
   true
-after_success:
-  coveralls
