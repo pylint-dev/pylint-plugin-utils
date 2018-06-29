@@ -1,13 +1,23 @@
 language: python
 python:
-  - "2.6"
   - "2.7"
-  - "3.3"
   - "3.4"
   - "3.5"
   - "3.6"
+env:
+  - PYLINT=1.8.1
+  - PYLINT=github
 install:
-  - "pip install coverage coveralls"
-  - "pip install --editable ."
+  - |
+    pip install coverage coveralls
+    if [ "$PYLINT" == "github" ]; then
+        pip install https://github.com/PyCQA/astroid/zipball/master
+        pip install https://github.com/PyCQA/pylint/zipball/master
+    else
+        pip install pylint==$PYLINT
+    fi
+
 script:
-  true
+  - coverage run tests.py
+after_success:
+  - coveralls
