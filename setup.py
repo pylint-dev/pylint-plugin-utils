@@ -27,7 +27,7 @@ setup(
     author_email='code@landscape.io',
     description=_short_description,
     version=_version,
-    install_requires=['pylint', 'astroid'],
+    install_requires=['pylint'],
     packages=_packages,
     license='GPLv2',
     classifiers=_classifiers,
