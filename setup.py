@@ -6,7 +6,7 @@ _packages = find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"])
 
 _short_description = "Utilities and helpers for writing Pylint plugins"
 
-_classifiers = (
+_classifiers = [
     'Development Status :: 5 - Production/Stable',
     'Environment :: Console',
     'Intended Audience :: Developers',
@@ -16,7 +16,7 @@ _classifiers = (
     'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: 3.6',
-)
+]
 
 setup(
     name='pylint-plugin-utils',
