@@ -117,16 +117,26 @@ def suppress_message(linter, checker_method, message_id_or_symbol, test_func):
     # compatability with <=1.2 and >=1.3
     msgs_store = getattr(linter, 'msgs_store', linter)
 
-    # pylint 2.0 renamed check_message_id to get_message_definition in:
-    # https://github.com/PyCQA/pylint/commit/5ccbf9eaa54c0c302c9180bdfb745566c16e416d
-    if hasattr(msgs_store, 'check_message_id'):
-        get_message_definition = msgs_store.check_message_id
-    else:
-        get_message_definition = msgs_store.get_message_definition
+    def get_message_definitions(message_id_or_symbol):
+        if hasattr(msgs_store, 'check_message_id'):
+            return [msgs_store.check_message_id(message_id_or_symbol)]
+        # pylint 2.0 renamed check_message_id to get_message_definition in:
+        # https://github.com/PyCQA/pylint/commit/5ccbf9eaa54c0c302c9180bdfb745566c16e416d
+        elif hasattr(msgs_store, 'get_message_definition'):
+            return [msgs_store.get_message_definition(message_id_or_symbol)]
+        # pylint 2.3.0 renamed get_message_definition to get_message_definitions in:
+        # https://github.com/PyCQA/pylint/commit/da67a9da682e51844fbc674229ff6619eb9c816a
+        elif hasattr(msgs_store, 'get_message_definitions'):
+            return msgs_store.get_message_definitions(message_id_or_symbol)
+        else:
+            raise ValueError('pylint.utils.MessagesStore does not have a get_message_definition(s) method')
 
     try:
-        pylint_message = get_message_definition(message_id_or_symbol)
-        symbols = [s for s in (pylint_message.msgid, pylint_message.symbol) if s is not None]
+        pylint_messages = get_message_definitions(message_id_or_symbol)
+        symbols = [symbol
+                   for pylint_message in pylint_messages
+                   for symbol in (pylint_message.msgid, pylint_message.symbol)
+                   if symbol is not None]
     except UnknownMessage:
         # This can happen due to mismatches of pylint versions and plugin expectations of available messages
         symbols = [message_id_or_symbol]
