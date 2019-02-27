@@ -119,13 +119,18 @@ def suppress_message(linter, checker_method, message_id_or_symbol, test_func):
 
     # pylint 2.0 renamed check_message_id to get_message_definition in:
     # https://github.com/PyCQA/pylint/commit/5ccbf9eaa54c0c302c9180bdfb745566c16e416d
+    # pylint 2.3.0 renamed get_message_definition to get_message_definitions in:
+    # https://github.com/PyCQA/pylint/commit/da67a9da682e51844fbc674229ff6619eb9c816a
     if hasattr(msgs_store, 'check_message_id'):
-        get_message_definition = msgs_store.check_message_id
+        get_message_definitions = msgs_store.check_message_id
+    elif hasattr(msgs_store, 'get_message_definition'):
+        get_message_definitions = msgs_store.get_message_definition
     else:
-        get_message_definition = msgs_store.get_message_definition
+        get_message_definitions = msgs_store.get_message_definitions
 
     try:
-        pylint_message = get_message_definition(message_id_or_symbol)
+        pylint_message = get_message_definitions(message_id_or_symbol)
+        pylint_message = pylint_message[0] if isinstance(pylint_message, (list, tuple)) else pylint_message
         symbols = [s for s in (pylint_message.msgid, pylint_message.symbol) if s is not None]
     except UnknownMessage:
         # This can happen due to mismatches of pylint versions and plugin expectations of available messages
