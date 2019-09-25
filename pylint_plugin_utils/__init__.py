@@ -1,8 +1,6 @@
 import sys
-try:
-    from pylint.exceptions import UnknownMessageError as UnknownMessage
-except ImportError:
-    from pylint.exceptions import UnknownMessage
+
+from pylint.exceptions import UnknownMessageError
 
 
 def get_class(module_name, kls):
@@ -137,7 +135,7 @@ def suppress_message(linter, checker_method, message_id_or_symbol, test_func):
                    for pylint_message in pylint_messages
                    for symbol in (pylint_message.msgid, pylint_message.symbol)
                    if symbol is not None]
-    except UnknownMessage:
+    except UnknownMessageError:
         # This can happen due to mismatches of pylint versions and plugin expectations of available messages
         symbols = [message_id_or_symbol]
 
