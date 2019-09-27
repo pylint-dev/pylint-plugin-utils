@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from setuptools import find_packages, setup
 
-_version = "0.5"
+_version = "0.6"
 _packages = find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"])
 
 _short_description = "Utilities and helpers for writing Pylint plugins"
