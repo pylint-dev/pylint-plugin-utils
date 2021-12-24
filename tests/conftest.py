@@ -1,12 +1,8 @@
 # pylint: disable=redefined-outer-name
-import os
 from pathlib import Path
 
 import pytest
-
-from pylint import checkers
 from pylint.lint import PyLinter
-from pylint.testutils import MinimalTestReporter
 
 
 @pytest.fixture()
@@ -18,4 +14,3 @@ def tests_directory():
 def linter():
     _linter = PyLinter()
     return _linter
-
