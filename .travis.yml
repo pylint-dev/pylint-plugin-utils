@@ -1,10 +1,11 @@
 dist: xenial
 language: python
 python:
-  - "3.5"
   - "3.6"
   - "3.7"
   - "3.8"
+  - "3.9"
+  - "3.10"
 env:
   - PYLINT=2.0.0
   - PYLINT=2.1.1
@@ -13,7 +14,7 @@ env:
   - PYLINT=master
 install:
   - |
-    pip install coverage coveralls
+    pip install pytest pytest-cov coveralls
     if [ "$PYLINT" == "master" ]; then
         pip install https://github.com/PyCQA/astroid/zipball/master
         pip install https://github.com/PyCQA/pylint/zipball/master
@@ -22,6 +23,6 @@ install:
     fi
 
 script:
-  - coverage run tests.py
+  - pytest tests/ --cov=pylint_plugin_utils
 after_success:
   - coveralls
