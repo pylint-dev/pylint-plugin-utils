@@ -2,8 +2,7 @@
 
 ## Status
 
-[![Build Status](https://travis-ci.org/PyCQA/pylint-plugin-utils.svg?branch=master)](https://travis-ci.org/PyCQA/pylint-plugin-utils)
-[![Code Health](https://landscape.io/github/PyCQA/pylint-plugin-utils/master/landscape.svg?style=flat)](https://landscape.io/github/PyCQA/pylint-plugin-utils/master)
+[![Build Status](https://github.com/PyCQA/pylint/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/PyCQA/pylint/actions)
 [![Coverage Status](https://coveralls.io/repos/github/PyCQA/pylint-plugin-utils/badge.svg?branch=master)](https://coveralls.io/github/PyCQA/pylint-plugin-utils?branch=master)
 
 # About
