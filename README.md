@@ -18,9 +18,9 @@ source .pylint-plugin-utils/bin/activate
 pip install --upgrade pip setuptools
 ```
 
-We use [tox](https://tox.readthedocs.io/en/latest/) and [pytest-benchmark](https://pytest-benchmark.readthedocs.io/en/latest/index.html) for running the test suite. You should be able to install it with:
+We use [tox](https://tox.readthedocs.io/en/latest/) for running the test suite. You should be able to install it with:
 ```bash
-pip install tox pytest pytest-benchmark
+pip install tox pytest
 ```
 
 To run the test suite for a particular Python version, you can do:
@@ -30,7 +30,7 @@ tox -e py38
 
 To run individual tests with ``tox``, you can do::
 ```bash
-tox -e py38 -- -k name_of_the_test
+tox -e py38 -- -k test_linter_should_be_pickleable
 ```
 
 We use pytest_ for testing ``pylint``, which you can use without using ``tox`` for a faster development cycle.
@@ -42,8 +42,6 @@ pip install pytest-cov
 python3 -m pytest tests/ --cov=pylint_plugin_utils
 coverage html
 ```
-
-
 
 # License
 

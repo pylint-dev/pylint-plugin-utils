@@ -29,7 +29,7 @@ setup(
     author_email="code-quality@python.org",
     description=_short_description,
     version=_version,
-    install_requires=["pylint>=1.7", "pytest"],
+    install_requires=["pylint>=1.7"],
     packages=_packages,
     license="GPLv2",
     classifiers=_classifiers,
