@@ -25,6 +25,7 @@ pip-log.txt
 .coverage
 .tox
 nosetests.xml
+.pytest_cache
 
 # Translations
 *.mo
@@ -33,3 +34,5 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+.pylint-plugin-utils
+.idea
