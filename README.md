@@ -2,7 +2,7 @@
 
 ## Status
 
-[![Build Status](https://github.com/PyCQA/pylint/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/PyCQA/pylint/actions)
+[![Build Status](https://github.com/PyCQA/pylint-plugin-utils/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/PyCQA/pylint-plugin-utils/actions)
 [![Coverage Status](https://coveralls.io/repos/github/PyCQA/pylint-plugin-utils/badge.svg?branch=master)](https://coveralls.io/github/PyCQA/pylint-plugin-utils?branch=master)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
