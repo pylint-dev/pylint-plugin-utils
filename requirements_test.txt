@@ -1,0 +1,5 @@
+-r requirements_test_pre_commit.txt
+-r requirements_test_min.txt
+pre-commit~=2.16
+pytest-cov~=3.0
+coveralls~=3.3
