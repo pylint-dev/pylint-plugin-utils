@@ -29,7 +29,7 @@ To run the test suite for a particular Python version, you can do:
 tox -e py38
 ```
 
-To run individual tests with ``tox``, you can do::
+To run individual tests with ``tox``, you can do:
 ```bash
 tox -e py38 -- -k test_linter_should_be_pickleable
 ```
