@@ -14,7 +14,7 @@ Utilities and helpers for writing Pylint plugins. This is not a direct Pylint pl
 # Testing
 Create virtualenv:
 ```bash
-python3.8  -m venv .pylint-plugin-utils
+python3.8 -m venv .pylint-plugin-utils
 source .pylint-plugin-utils/bin/activate
 pip install --upgrade pip setuptools
 ```
