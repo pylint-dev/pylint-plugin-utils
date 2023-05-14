@@ -43,9 +43,7 @@ def augment_visit(linter: PyLinter, checker_method, augmentation):
     try:
         checker = get_checker(linter, checker_method.__self__.__class__)
     except AttributeError:
-        checker = get_checker(
-            linter, get_class(checker_method.__module__, checker_method.__qualname__)
-        )
+        checker = get_checker(linter, get_class(checker_method.__module__, checker_method.__qualname__))
 
     old_method = getattr(checker, checker_method.__name__)
     setattr(checker, checker_method.__name__, AugmentFunc(old_method, augmentation))
@@ -101,9 +99,7 @@ def suppress_message(linter: PyLinter, checker_method, message_id_or_symbol, tes
     returns True. It is useful to prevent one particular message from being raised
     in one particular case, while leaving the rest of the messages intact.
     """
-    augment_visit(
-        linter, checker_method, DoSuppress(linter, message_id_or_symbol, test_func)
-    )
+    augment_visit(linter, checker_method, DoSuppress(linter, message_id_or_symbol, test_func))
 
 
 class DoSuppress:
@@ -161,8 +157,5 @@ class DoSuppress:
         elif hasattr(msgs_store, "get_message_definitions"):
             return msgs_store.get_message_definitions(message_id_or_symbol)
         else:
-            msg = (
-                "pylint.utils.MessagesStore does not have a "
-                "get_message_definition(s) method"
-            )
+            msg = "pylint.utils.MessagesStore does not have a " "get_message_definition(s) method"
             raise ValueError(msg)

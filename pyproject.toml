@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "pylint-plugin-utils"
+version = "0.8"
+readme = "README.md"
+description = "Utilities and helpers for writing Pylint plugins"
+repository = "https://github.com/PyCQA/pylint-plugin-utils"
+authors = ["Carl Crowder <git@carlcrowder.com>"]
+license="GPLv2"
+keywords=["pylint","plugin","helpers"]
+packages = [
+  {include = "pylint_plugin_utils/"}
+]
+include = [
+  "LICENSE",
+  "*.rst",
+  "*.md"
+]
+
+[tool.poetry.dependencies]
+python = ">=3.7,<4.0"
+pylint = ">=1.7"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "~6.2"
+pre-commit = "~2.16"
+pytest-cov = "~3.0"
+coveralls = "~3.3"
+tox = "^4.5.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+python_files = ["tests.py","test_*.py","*_tests.py","tests/*.py"]
+
+[tool.black]
+line-length = 120
+exclude = '''
+/(
+    tests/
+)/
+'''
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 120
