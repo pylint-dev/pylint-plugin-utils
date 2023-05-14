@@ -24,7 +24,7 @@ def test_linter_should_be_pickleable(linter):
         return
 
     # Setup
-    linter.register_checker(TypeChecker(linter))
+    linter.register_checker(TypeChecker())
     augment_visit(linter, TypeChecker.visit_attribute, fake_augmentation_func)
     suppress_message(linter, TypeChecker.visit_attribute, "no-member", fake_suppress_func)
 
