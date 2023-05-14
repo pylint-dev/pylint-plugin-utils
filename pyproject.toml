@@ -26,8 +26,6 @@ pre-commit = "~2.16"
 pytest-cov = "~3.0"
 coveralls = "~3.3"
 tox = "^4.5.1"
-# TODO: fix pickling test, right now the linter cannot be pickled after 2.13
-pylint = "<2.13"  # this version introduces an unpicklable EncodedFile object...
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
