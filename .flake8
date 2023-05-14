@@ -1,6 +1,0 @@
-[flake8]
-ignore =
-    E203, W503, # Incompatible with black see https://github.com/ambv/black/issues/315
-
-max-line-length=88
-max-complexity=39
