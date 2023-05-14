@@ -28,7 +28,7 @@ jobs:
         id: generate-python-key
         run: >-
           echo "::set-output name=key::base-venv-${{ env.CACHE_VERSION }}-${{
-            hashFiles('setup.cfg', 'requirements_test.txt', 'requirements_test_min.txt')
+            hashFiles('poetry.lock', 'pyproject.toml')
           }}"
       - name: Restore Python virtual environment
         id: cache-venv
@@ -45,8 +45,8 @@ jobs:
         run: |
           python -m venv venv
           . venv/bin/activate
-          python -m pip install -U pip setuptools wheel
-          pip install -U -r requirements_test.txt
+          python -m pip install -U pip poetry
+          poetry install
       - name: Generate pre-commit restore key
         id: generate-pre-commit-key
         run: >-
@@ -89,7 +89,7 @@ jobs:
         id: generate-python-key
         run: >-
           echo "::set-output name=key::venv-${{ env.CACHE_VERSION }}-${{
-            hashFiles('setup.cfg', 'requirements_test.txt', 'requirements_test_min.txt')
+            hashFiles('poetry.lock', 'pyproject.toml')
           }}"
       - name: Restore Python virtual environment
         id: cache-venv
@@ -214,7 +214,7 @@ jobs:
         id: generate-python-key
         run: >-
           echo "::set-output name=key::venv-${{ env.CACHE_VERSION }}-${{
-            hashFiles('setup.cfg', 'requirements_test_min.txt')
+            hashFiles('poetry.lock', 'pyproject.toml')
           }}"
       - name: Restore Python virtual environment
         id: cache-venv
@@ -294,7 +294,7 @@ jobs:
         id: generate-python-key
         run: >-
           echo "::set-output name=key::venv-${{ env.CACHE_VERSION }}-${{
-            hashFiles('setup.cfg', 'requirements_test_min.txt')
+            hashFiles('poetry.lock', 'pyproject.toml')
           }}"
       - name: Restore Python virtual environment
         id: cache-venv
