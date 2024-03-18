@@ -6,12 +6,10 @@ from pylint.checkers.typecheck import TypeChecker
 from pylint_plugin_utils import augment_visit, suppress_message
 
 
-def fake_augmentation_func(*args, **kwargs):
-    ...
+def fake_augmentation_func(*args, **kwargs): ...
 
 
-def fake_suppress_func(*args, **kwargs):
-    ...
+def fake_suppress_func(*args, **kwargs): ...
 
 
 def test_linter_should_be_pickleable(linter):
