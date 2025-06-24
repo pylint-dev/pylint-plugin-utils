@@ -3,7 +3,6 @@
 ## Status
 
 [![Build Status](https://github.com/PyCQA/pylint-plugin-utils/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/PyCQA/pylint-plugin-utils/actions)
-[![Coverage Status](https://coveralls.io/repos/github/PyCQA/pylint-plugin-utils/badge.svg?branch=master)](https://coveralls.io/github/PyCQA/pylint-plugin-utils?branch=master)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 [![Pypi Package version](https://img.shields.io/pypi/v/pylint-plugin-utils.svg)](https://pypi.python.org/pypi/pylint-plugin-utils)
 
@@ -26,12 +25,12 @@ pip install tox pytest
 
 To run the test suite for a particular Python version, you can do:
 ```bash
-tox -e py38
+tox -e py39
 ```
 
 To run individual tests with ``tox``, you can do:
 ```bash
-tox -e py38 -- -k test_linter_should_be_pickleable
+tox -e py39 -- -k test_linter_should_be_pickleable
 ```
 
 We use ``pytest`` for testing ``pylint``, which you can use without using ``tox`` for a faster development cycle.

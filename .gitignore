@@ -38,6 +38,7 @@ htmlcov
 .pydevproject
 .pylint-plugin-utils
 .idea
+*.swp
 
 .venv
 env.txt
