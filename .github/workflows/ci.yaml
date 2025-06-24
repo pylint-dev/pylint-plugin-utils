@@ -4,7 +4,7 @@ on: [push]
 
 env:
   CACHE_VERSION: 3
-  DEFAULT_PYTHON: 3.8
+  DEFAULT_PYTHON: 3.9
   PRE_COMMIT_CACHE: ~/.cache/pre-commit
 
 jobs:
