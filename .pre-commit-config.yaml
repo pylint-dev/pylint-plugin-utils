@@ -15,12 +15,12 @@ repos:
       - id: flake8
         args: [ --max-line-length=120 ]
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 25.11.0
+    rev: 26.5.1
     hooks:
       - id: black
         args: [--safe, --line-length=120]
   - repo: https://github.com/PyCQA/isort
-    rev: 7.0.0
+    rev: 9.0.0b2
     hooks:
       - id: isort
         args: ['--profile', 'black']
